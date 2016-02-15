@@ -17,15 +17,15 @@
 
 # RECURSOS RECOMENDADOS
 
-- http://www.sistemasuni.edu.pe/dmodulos/JavaveloperCC.html
-- http://www.sistemasuni.edu.pe/dcursos/javaescritorio.html
-- http://gcoronelc.blogspot.pe/2013/06/resumen-seminario-java-cliente-servidor.html
-- http://gcoronelc.blogspot.pe/2011/02/libros-de-oracle.html
-- http://gcoronelc.blogspot.pe/p/java.html
-- https://github.com/gcoronelc/PECI-Java-MAR-2015
-- https://www.udemy.com/learning-git/
-- http://www.librosdigitales.net
-- http://gcoronelc.blogspot.pe/p/java.html
+- Programa: http://www.sistemasuni.edu.pe/dmodulos/JavaveloperCC.html
+- Contenido: http://www.sistemasuni.edu.pe/dcursos/javaescritorio.html
+- Seminario: http://gcoronelc.blogspot.pe/2013/06/resumen-seminario-java-cliente-servidor.html
+- Libros de ORacle: http://gcoronelc.blogspot.pe/2011/02/libros-de-oracle.html
+- Recursos de Java: http://gcoronelc.blogspot.pe/p/java.html
+- Curso completo de Java: https://github.com/gcoronelc/PECI-Java-MAR-2015
+- Curso de Git: https://www.udemy.com/learning-git/
+- Portal de cursos virtuales: http://www.librosdigitales.net
+
 
 # CLASE 01 
 
