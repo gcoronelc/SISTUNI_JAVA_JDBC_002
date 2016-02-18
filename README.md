@@ -4,7 +4,7 @@
 
 - Lugar: SistemasUNI
 - Horario: MARTES y JUEVES DE 8 a 13 Horas
-- Inicio: 18-FEB-2016
+- Inicio: 23-FEB-2016
 - Dirección: https://goo.gl/maps/98vwAt9NZMU2
 - Contenido: http://www.sistemasuni.edu.pe/dcursos/javaescritorio.html
 - Página: http://gcoronelc.github.io/SISTUNI_JAVA_JDBC_002/
@@ -29,7 +29,7 @@
 
 # CLASE 01 
 
-- Fecha: 18-FEB-2016
+- Fecha: 23-FEB-2016
 
 
 
