@@ -25,12 +25,16 @@
 - Curso completo de Java: https://github.com/gcoronelc/PECI-Java-MAR-2015
 - Curso de Git: https://www.udemy.com/learning-git/
 - Portal de cursos virtuales: http://www.librosdigitales.net
+- Oracle Tour 2013: http://www.peoug.org/otntour2013/
+- http://www.peoug.org/oracleotn2012/
+- http://www.peoug.org/otntour2014/
+- http://www.peoug.org/otntour2015/
 
 
 # CLASE 01 
 
-- Fecha: 23-FEB-2016
-
+- Fecha: 01-MAR-2016
+- 
 
 
 
