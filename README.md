@@ -24,17 +24,30 @@
 - Recursos de Java: http://gcoronelc.blogspot.pe/p/java.html
 - Curso completo de Java: https://github.com/gcoronelc/PECI-Java-MAR-2015
 - Curso de Git: https://www.udemy.com/learning-git/
+- Curso de Git: https://youtu.be/NmbqlkLTOSI
 - Portal de cursos virtuales: http://www.librosdigitales.net
 - Oracle Tour 2013: http://www.peoug.org/otntour2013/
 - http://www.peoug.org/oracleotn2012/
 - http://www.peoug.org/otntour2014/
 - http://www.peoug.org/otntour2015/
+- RichFaces is Dead: https://youtu.be/o7t3ABfWYLo
+- ¿Eres un recurso estratégico?: https://youtu.be/knZxhVck2mk
 
 
 # CLASE 01 
 
 - Fecha: 01-MAR-2016
-- 
+- Git
+- Oracle
+- JDBC API
+- Connection
+- Statement
+
+# CLASE 02
+
+
+
+
 
 
 
