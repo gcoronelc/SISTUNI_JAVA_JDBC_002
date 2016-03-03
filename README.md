@@ -45,6 +45,10 @@
 
 # CLASE 02
 
+- PreparedStatement
+- Transacciones
+- Iniciado la aplicación
+
 
 
 
