@@ -49,6 +49,9 @@
 - Transacciones
 - Iniciado la aplicación
 
+# CLASE 03
+
+- https://www.youtube.com/watch?v=2Bcbls0bBzs
 
 
 
