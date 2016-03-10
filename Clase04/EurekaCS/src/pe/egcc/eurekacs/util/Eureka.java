@@ -10,9 +10,9 @@ public final class Eureka {
   }
 
   // Constantes del CRUD
-  public static String CRUD_EDITAR = "EDITAR";
-  public static String CRUD_ELIMINAR = "ELIMINAR";
-  public static String CRUD_NUEVO = "NUEVO";
+  public static final String CRUD_EDITAR = "EDITAR";
+  public static final String CRUD_ELIMINAR = "ELIMINAR";
+  public static final String CRUD_NUEVO = "NUEVO";
   
   
 }

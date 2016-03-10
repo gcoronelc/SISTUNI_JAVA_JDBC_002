@@ -5,12 +5,23 @@
  */
 package pe.egcc.eurekacs.view;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import pe.egcc.eurekacs.controller.ClienteController;
 import pe.egcc.eurekacs.domain.Cliente;
 import pe.egcc.eurekacs.util.Dialogo;
 import pe.egcc.eurekacs.util.Eureka;
+import pe.egcc.eurekacs.util.Memoria;
 
 /**
  *
@@ -20,7 +31,7 @@ public class MantClientesView extends javax.swing.JInternalFrame {
 
   private ClienteController control;
   private List<Cliente> lista;
-  
+
   /**
    * Creates new form MantClientesView
    */
@@ -42,11 +53,11 @@ public class MantClientesView extends javax.swing.JInternalFrame {
     txtPaterno = new javax.swing.JTextField();
     txtMaterno = new javax.swing.JTextField();
     txtNombre = new javax.swing.JTextField();
-    jButton1 = new javax.swing.JButton();
+    btnBuscar = new javax.swing.JButton();
     btnNuevo = new javax.swing.JButton();
     btnEditar = new javax.swing.JButton();
     btnEliminar = new javax.swing.JButton();
-    jButton5 = new javax.swing.JButton();
+    btnExcel = new javax.swing.JButton();
     jButton6 = new javax.swing.JButton();
     jScrollPane1 = new javax.swing.JScrollPane();
     tblData = new javax.swing.JTable();
@@ -63,10 +74,10 @@ public class MantClientesView extends javax.swing.JInternalFrame {
 
     jLabel3.setText("Nombre");
 
-    jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pe/egcc/eurekacs/img/buscar.gif"))); // NOI18N
-    jButton1.addActionListener(new java.awt.event.ActionListener() {
+    btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pe/egcc/eurekacs/img/buscar.gif"))); // NOI18N
+    btnBuscar.addActionListener(new java.awt.event.ActionListener() {
       public void actionPerformed(java.awt.event.ActionEvent evt) {
-        jButton1ActionPerformed(evt);
+        btnBuscarActionPerformed(evt);
       }
     });
 
@@ -91,26 +102,38 @@ public class MantClientesView extends javax.swing.JInternalFrame {
       }
     });
 
-    jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pe/egcc/eurekacs/img/Excel.png"))); // NOI18N
+    btnExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pe/egcc/eurekacs/img/excel_20x20.png"))); // NOI18N
+    btnExcel.setToolTipText("Exportar a Excel.");
+    btnExcel.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        btnExcelActionPerformed(evt);
+      }
+    });
 
-    jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pe/egcc/eurekacs/img/PDF.png"))); // NOI18N
+    jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pe/egcc/eurekacs/img/PDF_20X20.png"))); // NOI18N
+    jButton6.setToolTipText("Exportar a PDF.");
+    jButton6.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton6ActionPerformed(evt);
+      }
+    });
 
     tblData.setModel(new javax.swing.table.DefaultTableModel(
       new Object [][] {
-        {null, null, null, null, null},
-        {null, null, null, null, null},
-        {null, null, null, null, null},
-        {null, null, null, null, null}
+        {null, null, null, null, null, null},
+        {null, null, null, null, null, null},
+        {null, null, null, null, null, null},
+        {null, null, null, null, null, null}
       },
       new String [] {
-        "PATERNO", "MATERNO", "NOMBRE", "DNI", "EMAIL"
+        "CODIGO", "PATERNO", "MATERNO", "NOMBRE", "DNI", "EMAIL"
       }
     ) {
       Class[] types = new Class [] {
-        java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+        java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
       };
       boolean[] canEdit = new boolean [] {
-        false, false, false, true, true
+        false, false, false, false, false, false
       };
 
       public Class getColumnClass(int columnIndex) {
@@ -145,7 +168,7 @@ public class MantClientesView extends javax.swing.JInternalFrame {
               .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
               .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jButton1)
+            .addComponent(btnBuscar)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(btnNuevo)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -153,10 +176,10 @@ public class MantClientesView extends javax.swing.JInternalFrame {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(btnEliminar)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jButton5)
+            .addComponent(btnExcel)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jButton6)
-            .addGap(0, 119, Short.MAX_VALUE)))
+            .addGap(0, 143, Short.MAX_VALUE)))
         .addContainerGap())
     );
     layout.setVerticalGroup(
@@ -164,7 +187,7 @@ public class MantClientesView extends javax.swing.JInternalFrame {
       .addGroup(layout.createSequentialGroup()
         .addContainerGap()
         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-          .addComponent(jButton1)
+          .addComponent(btnBuscar)
           .addGroup(layout.createSequentialGroup()
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
               .addComponent(jLabel1)
@@ -179,7 +202,7 @@ public class MantClientesView extends javax.swing.JInternalFrame {
           .addComponent(btnNuevo)
           .addComponent(btnEditar)
           .addComponent(btnEliminar)
-          .addComponent(jButton5)
+          .addComponent(btnExcel)
           .addComponent(jButton6))
         .addGap(18, 18, 18)
         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
@@ -189,7 +212,7 @@ public class MantClientesView extends javax.swing.JInternalFrame {
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
-  private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+  private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
     try {
       // Datos
       Cliente cliente = new Cliente();
@@ -203,7 +226,7 @@ public class MantClientesView extends javax.swing.JInternalFrame {
     } catch (Exception e) {
       Dialogo.error(rootPane, e.getMessage());
     }
-  }//GEN-LAST:event_jButton1ActionPerformed
+  }//GEN-LAST:event_btnBuscarActionPerformed
 
   private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
     Cliente bean = new Cliente();
@@ -212,45 +235,133 @@ public class MantClientesView extends javax.swing.JInternalFrame {
     view.setBean(bean);
     view.setAccion(Eureka.CRUD_NUEVO);
     view.setVisible(true);
+    if (Memoria.get("bean") != null) {
+      bean = (Cliente) Memoria.get("bean");
+      lista.add(0, bean);
+      mostrarLista(lista);
+    }
   }//GEN-LAST:event_btnNuevoActionPerformed
 
   private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
     int fila;
     fila = tblData.getSelectedRow();
-    if(fila == -1){
+    if (fila == -1) {
       return;
     }
-    Cliente bean= lista.get(fila);
+    Cliente bean = lista.get(fila);
     EditarClienteView view = new EditarClienteView(null, true);
     view.setBean(bean);
     view.setAccion(Eureka.CRUD_EDITAR);
     view.setVisible(true);
-    
+    if (Memoria.get("bean") != null) {
+      bean = (Cliente) Memoria.get("bean");
+      lista.set(fila, bean);
+      mostrarLista(lista);
+    }
   }//GEN-LAST:event_btnEditarActionPerformed
 
   private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
     int fila;
     fila = tblData.getSelectedRow();
-    if(fila == -1){
+    if (fila == -1) {
       return;
     }
-    Cliente bean= lista.get(fila);
+    Cliente bean = lista.get(fila);
     EditarClienteView view = new EditarClienteView(null, true);
     view.setBean(bean);
     view.setAccion(Eureka.CRUD_ELIMINAR);
     view.setVisible(true);
+    if (Memoria.get("bean") != null) {
+      lista.remove(fila);
+      mostrarLista(lista);
+    }
   }//GEN-LAST:event_btnEliminarActionPerformed
 
+  private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
+    if(lista == null || lista.size() == 0){
+      return;
+    }
+    try {
+      // El libro
+      String plantilla = "/pe/egcc/eurekacs/plantillas/Clientes.xls";
+      InputStream isPlantilla = Class.class.getResourceAsStream(plantilla);
+      POIFSFileSystem fs = new POIFSFileSystem(isPlantilla);
+      HSSFWorkbook wb = new HSSFWorkbook(fs, true);
+      // Acceder a la hoja
+      HSSFSheet sheet = wb.getSheetAt(0);
+      // Llenar datos
+      int fila = 0;
+      for(Cliente bean: lista){
+        fila++;
+        HSSFRow row = sheet.createRow(fila);
+        row.createCell(0).setCellValue(bean.getCodigo());
+        row.createCell(1).setCellValue(bean.getPaterno());
+        row.createCell(2).setCellValue(bean.getMaterno());
+      }
+      // Grabar
+      FileOutputStream fileOut = new FileOutputStream("e://egcc/clientes.xls");
+      wb.write(fileOut);
+      fileOut.close();
+      Dialogo.info(rootPane, "Proceso ok.");
+    } catch (Exception e) {
+      e.printStackTrace();
+      Dialogo.error(rootPane, e.getMessage());
+    }
+  }//GEN-LAST:event_btnExcelActionPerformed
 
-  
-  
-  
+  private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    if(lista == null || lista.isEmpty()){
+      return;
+    }
+    Document document = null;
+    try {
+      // Archivo destino
+      String archivo = "E:\\EGCC\\clientes.pdf";
+      // step 1
+      document = new Document();
+      // step 2
+      PdfWriter.getInstance(document, new FileOutputStream(archivo));
+      // step 3
+      document.open();
+      // step 4: tabla
+      PdfPTable table = new PdfPTable(5);
+      // step 5: Cabeceras
+      table.addCell("CODIGO");
+      table.addCell("PATERNO");
+      table.addCell("MATERNO");
+      table.addCell("NOMBRE");
+      table.addCell("EMAIL");
+      // step 6: Data
+      for (Cliente cliente : lista) {
+        table.addCell(cliente.getCodigo());
+        table.addCell(cliente.getPaterno());
+        table.addCell(cliente.getMaterno());
+        table.addCell(cliente.getNombre());
+        table.addCell(cliente.getEmail());
+      }
+      // step 7: Cargar la tabla
+      document.add(table);
+      // step 8: Fin
+      Dialogo.info(this, "Proceso ejecutado correctamente.");
+
+    } catch (Exception ex) {
+      ex.printStackTrace();
+      Dialogo.error(this, "No se tiene permiso para crear el archivo.");
+    } finally {
+      try {
+        if(document != null) document.close();
+      } catch (Exception e) {
+      }
+    }
+  }//GEN-LAST:event_jButton6ActionPerformed
+
+
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JButton btnBuscar;
   private javax.swing.JButton btnEditar;
   private javax.swing.JButton btnEliminar;
+  private javax.swing.JButton btnExcel;
   private javax.swing.JButton btnNuevo;
-  private javax.swing.JButton jButton1;
-  private javax.swing.JButton jButton5;
   private javax.swing.JButton jButton6;
   private javax.swing.JLabel jLabel1;
   private javax.swing.JLabel jLabel2;
@@ -268,6 +379,7 @@ public class MantClientesView extends javax.swing.JInternalFrame {
     tabla.setRowCount(0);
     for (Cliente cliente : lista) {
       Object[] rowData = {
+        cliente.getCodigo(),
         cliente.getPaterno(),
         cliente.getMaterno(),
         cliente.getNombre(),
@@ -276,6 +388,6 @@ public class MantClientesView extends javax.swing.JInternalFrame {
       };
       tabla.addRow(rowData);
     }
-    
+
   }
 }

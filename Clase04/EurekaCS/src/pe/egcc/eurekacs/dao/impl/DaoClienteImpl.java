@@ -70,7 +70,72 @@ public class DaoClienteImpl implements DaoClienteEspec {
 
   @Override
   public void insert(Cliente bean) {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    Connection cn = null;
+    try {
+      // Acceso al objeto Connection
+      cn = AccesoDB.getConnection();
+      // Inicia Tx
+      cn.setAutoCommit(false);
+      // Incrementar el contador
+      String sql = "update contador "
+              + "set int_contitem = int_contitem + 1 "
+              + "where vch_conttabla = 'Cliente' ";
+      PreparedStatement pstm = cn.prepareStatement(sql);
+      int filas = pstm.executeUpdate();
+      pstm.close();
+      if (filas == 0) {
+        throw new Exception("Contador cno existe.");
+      }
+      // Leer contador
+      sql = "select int_contitem, int_contlongitud "
+              + "from contador "
+              + "where vch_conttabla = 'Cliente' ";
+      pstm = cn.prepareStatement(sql);
+      ResultSet rs = pstm.executeQuery();
+      rs.next();
+      int cont = rs.getInt("int_contitem");
+      int size = rs.getInt("int_contlongitud");
+      // Crear codigo
+      String formato = "%1$0" + size + "d";
+      String codigo = String.format(formato, cont);
+      // Insertar cliente
+      sql = "insert into cliente(chr_cliecodigo,vch_cliepaterno,"
+              + "vch_cliematerno,vch_clienombre,chr_cliedni,"
+              + "vch_clieciudad,vch_cliedireccion,"
+              + "vch_clietelefono,vch_clieemail) "
+              + "values(?,?,?,?,?,?,?,?,?)";
+      pstm = cn.prepareStatement(sql);
+      pstm.setString(1, codigo);
+      pstm.setString(2, bean.getPaterno());
+      pstm.setString(3, bean.getMaterno());
+      pstm.setString(4, bean.getNombre());
+      pstm.setString(5, bean.getDni());
+      pstm.setString(6, bean.getCiudad());
+      pstm.setString(7, bean.getDireccion());
+      pstm.setString(8, bean.getTelefono());
+      pstm.setString(9, bean.getEmail());
+      pstm.executeUpdate();
+      // Confirmar Tx
+      cn.commit();
+      // Retornar el codigo
+      bean.setCodigo(codigo);
+    } catch (Exception e) {
+      try {
+        // Cancela Tx
+        cn.rollback();
+      } catch (Exception e1) {
+      }
+      String mensaje = "Error en el Proceso, intentelo mas tarde.";
+      if (e.getMessage() != null && !e.getMessage().isEmpty()) {
+        mensaje += " " + e.getMessage();
+      }
+      throw new RuntimeException(mensaje);
+    } finally {
+      try {
+        cn.close();
+      } catch (Exception e) {
+      }
+    }
   }
 
   @Override
