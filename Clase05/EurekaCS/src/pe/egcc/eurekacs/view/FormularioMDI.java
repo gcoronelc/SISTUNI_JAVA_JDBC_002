@@ -58,6 +58,7 @@ public class FormularioMDI extends javax.swing.JFrame {
     menuReporte = new javax.swing.JMenu();
     menuReporteClientes = new javax.swing.JMenuItem();
     menuReporteClientes2 = new javax.swing.JMenuItem();
+    menuReporteMovimientos = new javax.swing.JMenuItem();
     menuUtil = new javax.swing.JMenu();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -109,6 +110,14 @@ public class FormularioMDI extends javax.swing.JFrame {
       }
     });
     menuReporte.add(menuReporteClientes2);
+
+    menuReporteMovimientos.setText("Movimientos");
+    menuReporteMovimientos.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        menuReporteMovimientosActionPerformed(evt);
+      }
+    });
+    menuReporte.add(menuReporteMovimientos);
 
     menuBar.add(menuReporte);
 
@@ -187,6 +196,10 @@ public class FormularioMDI extends javax.swing.JFrame {
     } 
   }//GEN-LAST:event_menuReporteClientes2ActionPerformed
 
+  private void menuReporteMovimientosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuReporteMovimientosActionPerformed
+    cargarFormulario(RepoMovView.class);
+  }//GEN-LAST:event_menuReporteMovimientosActionPerformed
+
   /**
    * @param args the command line arguments
    */
@@ -232,6 +245,7 @@ public class FormularioMDI extends javax.swing.JFrame {
   private javax.swing.JMenu menuReporte;
   private javax.swing.JMenuItem menuReporteClientes;
   private javax.swing.JMenuItem menuReporteClientes2;
+  private javax.swing.JMenuItem menuReporteMovimientos;
   private javax.swing.JMenu menuTabla;
   private javax.swing.JMenuItem menuTablaClientes;
   private javax.swing.JMenu menuUtil;

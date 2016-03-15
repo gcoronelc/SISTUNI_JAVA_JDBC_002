@@ -5,8 +5,15 @@
         <group>
             <file>file:/E:/EGCC/SISTUNI_JAVA_JDBC_002/Clase05/EurekaCS/src/pe/egcc/eurekacs/view/FormularioMDI.java</file>
             <file>file:/E:/EGCC/SISTUNI_JAVA_JDBC_002/Clase05/EurekaCS/src/pe/egcc/eurekacs/service/ClienteService.java</file>
+            <file>file:/E:/EGCC/SISTUNI_JAVA_JDBC_002/Clase05/EurekaCS/src/pe/egcc/eurekacs/controller/CuentaController.java</file>
             <file>file:/E:/EGCC/SISTUNI_JAVA_JDBC_002/Clase05/EurekaCS/src/pe/egcc/eurekacs/controller/ClienteController.java</file>
-            <file>file:/E:/EGCC/SISTUNI_JAVA_JDBC_002/Clase05/EurekaCS/src/pe/egcc/eurekacs/reports/repoClientes.jrxml</file>
+            <file>file:/E:/EGCC/SISTUNI_JAVA_JDBC_002/Clase05/EurekaCS/src/pe/egcc/eurekacs/dao/espec/DaoCuentaEspec.java</file>
+            <file>file:/E:/EGCC/SISTUNI_JAVA_JDBC_002/Clase05/EurekaCS/src/pe/egcc/eurekacs/dao/impl/DaoCuentaImpl.java</file>
+            <file>file:/E:/EGCC/SISTUNI_JAVA_JDBC_002/Clase05/EurekaCS/src/pe/egcc/eurekacs/reports/repoMovimientos.jrxml</file>
+            <file>file:/E:/EGCC/SISTUNI_JAVA_JDBC_002/Clase05/EurekaCS/src/pe/egcc/eurekacs/view/RepoMovView.java</file>
+            <file>file:/E:/EGCC/SISTUNI_JAVA_JDBC_002/Clase05/EurekaCS/src/pe/egcc/eurekacs/service/CuentaService.java</file>
+            <file>file:/E:/EGCC/SISTUNI_JAVA_JDBC_002/Clase05/EurekaCS/src/pe/egcc/eurekacs/dao/impl/JdbcUtil.java</file>
+            <file>file:/E:/EGCC/SISTUNI_JAVA_JDBC_002/Clase05/EurekaCS/src/pe/egcc/eurekacs/util/ReportViewInternal.java</file>
             <file>file:/E:/EGCC/SISTUNI_JAVA_JDBC_002/Clase05/EurekaCS/src/pe/egcc/eurekacs/dao/impl/DaoClienteImpl.java</file>
         </group>
     </open-files>

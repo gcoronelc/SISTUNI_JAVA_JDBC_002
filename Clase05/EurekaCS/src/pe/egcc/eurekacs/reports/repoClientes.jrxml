@@ -8,11 +8,11 @@
 codigo, paterno, materno, nombre, email
 from v_cliente]]>
 	</queryString>
-	<field name="CODIGO" class="java.lang.String"/>
-	<field name="PATERNO" class="java.lang.String"/>
-	<field name="MATERNO" class="java.lang.String"/>
-	<field name="NOMBRE" class="java.lang.String"/>
-	<field name="EMAIL" class="java.lang.String"/>
+	<field name="codigo" class="java.lang.String"/>
+	<field name="paterno" class="java.lang.String"/>
+	<field name="materno" class="java.lang.String"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="email" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -80,23 +80,23 @@ from v_cliente]]>
 		<band height="25" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="0" width="111" height="20" uuid="595866b3-75ed-4c72-96e5-33deb63d09c3"/>
-				<textFieldExpression><![CDATA[$F{CODIGO}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="111" y="0" width="111" height="20" uuid="1f5544dc-6f13-4375-8237-59698ecd1824"/>
-				<textFieldExpression><![CDATA[$F{PATERNO}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{paterno}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="222" y="0" width="111" height="20" uuid="50d50eb0-2c72-4f0c-9bd2-5249b9c43942"/>
-				<textFieldExpression><![CDATA[$F{MATERNO}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{materno}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="333" y="0" width="111" height="20" uuid="f4279e71-725c-488e-8f45-c696f3d59b77"/>
-				<textFieldExpression><![CDATA[$F{NOMBRE}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="444" y="0" width="111" height="20" uuid="15fbaea5-5416-4d13-b8fe-7ab8677169ad"/>
-				<textFieldExpression><![CDATA[$F{EMAIL}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
